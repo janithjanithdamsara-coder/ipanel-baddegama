@@ -90,17 +90,25 @@ a {
 }
 
 .sidebar-brand {
-  padding: 28px 24px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  padding: 22px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
 }
 
 .brand-logo {
   font-family: 'Outfit', sans-serif;
   font-weight: 800;
-  font-size: 23px;
+  font-size: 19px;
   letter-spacing: 0.5px;
   text-transform: uppercase;
   color: #ffffff;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  user-select: none;
 }
 
 .brand-logo span {
@@ -113,7 +121,7 @@ a {
 .brand-badge {
   background: linear-gradient(135deg, #0056FF, #0037a3);
   color: #ffffff;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
   text-transform: uppercase;
   padding: 3px 8px;
@@ -121,6 +129,33 @@ a {
   border-radius: 4px;
   display: inline-block;
   margin-top: 6px;
+  white-space: nowrap;
+}
+
+.sidebar-close-btn {
+  display: none;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-fast);
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.sidebar-close-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+.sidebar-close-btn svg {
+  width: 20px;
+  height: 20px;
 }
 
 .sidebar-nav {
@@ -713,18 +748,26 @@ table.app-table tbody tr:hover td {
 /* ---------------------------------------------------- */
 
 @media (max-width: 992px) {
+  .sidebar-close-btn {
+    display: inline-flex;
+  }
+
   .app-sidebar {
-    left: -290px;
+    width: min(300px, 86vw);
+    left: 0;
+    transform: translateX(-100%);
+    transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
     z-index: 1005;
+    box-shadow: 4px 0 25px rgba(0, 0, 0, 0.35);
   }
   
   .app-sidebar.active {
-    left: 0;
+    transform: translateX(0);
   }
   
   .main-content {
     margin-left: 0;
-    padding: 24px 16px;
+    padding: 20px 14px;
     margin-top: 60px;
   }
 
@@ -760,17 +803,41 @@ table.app-table tbody tr:hover td {
     width: 24px;
     height: 24px;
   }
+
+  .table-container {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
 }
 
 @media (max-width: 768px) {
   .section-card {
-    padding: 20px;
+    padding: 18px 16px;
+    margin-bottom: 20px;
+  }
+
+  .section-title {
+    font-size: 18px;
+  }
+
+  /* Prevent iOS Safari auto-zoom on form inputs */
+  input[type="text"],
+  input[type="number"],
+  input[type="tel"],
+  input[type="email"],
+  input[type="password"],
+  select,
+  textarea {
+    font-size: 16px !important;
   }
 
   .section-header {
     flex-direction: column;
     align-items: flex-start;
     gap: 12px;
+    padding-bottom: 16px;
+    margin-bottom: 18px;
   }
 
   .section-header div, 
@@ -781,6 +848,7 @@ table.app-table tbody tr:hover td {
   
   .section-header .btn {
     width: 100%;
+    justify-content: center;
   }
 
   /* DYNAMIC TABLE TO CARD CONVERSION ENGINE */
@@ -805,8 +873,8 @@ table.app-table tbody tr:hover td {
     background-color: var(--card-bg) !important;
     border: 1px solid var(--border-color) !important;
     border-radius: var(--radius-md) !important;
-    padding: 16px 18px !important;
-    margin-bottom: 20px !important;
+    padding: 14px 16px !important;
+    margin-bottom: 16px !important;
     box-shadow: var(--shadow-sm) !important;
     box-sizing: border-box !important;
   }
@@ -819,16 +887,17 @@ table.app-table tbody tr:hover td {
     display: flex !important;
     justify-content: space-between !important;
     align-items: center !important;
-    padding: 10px 0 !important;
-    border-bottom: 1px solid #f8fafc !important;
+    padding: 8px 0 !important;
+    border-bottom: 1px solid #f1f5f9 !important;
     text-align: right !important;
     background: transparent !important;
     width: 100% !important;
+    word-break: break-word;
   }
 
   table.app-table td:last-child {
     border-bottom: none !important;
-    padding-top: 12px !important;
+    padding-top: 10px !important;
     justify-content: flex-end !important;
   }
 
@@ -836,18 +905,44 @@ table.app-table tbody tr:hover td {
     content: attr(data-label);
     font-weight: 700;
     text-transform: uppercase;
-    font-size: 13px; /* Readable mobile card headers */
+    font-size: 12px;
     color: var(--text-muted);
     letter-spacing: 0.5px;
     text-align: left;
     margin-right: 12px;
+    flex-shrink: 0;
+  }
+
+  table.app-table td input {
+    max-width: 140px;
+    text-align: right;
   }
 }
 
 @media (max-width: 576px) {
+  body {
+    font-size: 15px;
+  }
+
+  h2 {
+    font-size: 20px !important;
+  }
+
+  .dashboard-grid {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+
   .modal-container {
-    padding: 24px 20px !important;
+    padding: 20px 16px !important;
     width: 95% !important;
+    max-height: 90vh;
+    overflow-y: auto;
   }
   
   .modal-container form div[style*="display: flex"] {
@@ -858,6 +953,11 @@ table.app-table tbody tr:hover td {
   .modal-container form div[style*="display: flex"] button,
   .modal-container form div[style*="display: flex"] a {
     width: 100% !important;
+  }
+
+  .btn {
+    padding: 12px 18px;
+    font-size: 14px;
   }
 }
 

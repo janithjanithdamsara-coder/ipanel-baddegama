@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/dhanesha/ipanelbaddegama.dhaneshadistributors.site/
+    - /bin/cp -R * $DEPLOYPATH

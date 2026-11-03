@@ -21,8 +21,9 @@
             const overlay = document.getElementById('sidebarOverlay');
             
             if (sidebar && overlay) {
-                sidebar.classList.toggle('active');
+                const isActive = sidebar.classList.toggle('active');
                 overlay.classList.toggle('active');
+                document.body.style.overflow = isActive ? 'hidden' : '';
             }
         }
 
@@ -34,6 +35,20 @@
                 if (sidebar && sidebar.classList.contains('active')) {
                     sidebar.classList.remove('active');
                     overlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            }
+        });
+
+        // Close sidebar with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const sidebar = document.getElementById('appSidebar');
+                const overlay = document.getElementById('sidebarOverlay');
+                if (sidebar && sidebar.classList.contains('active')) {
+                    sidebar.classList.remove('active');
+                    overlay.classList.remove('active');
+                    document.body.style.overflow = '';
                 }
             }
         });

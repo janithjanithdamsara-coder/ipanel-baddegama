@@ -112,10 +112,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
         .login-logo {
             font-family: 'Inter Tight', sans-serif;
             font-weight: 800;
-            font-size: 24px;
+            font-size: clamp(20px, 5vw, 24px);
             text-transform: uppercase;
             letter-spacing: 1.5px;
             color: var(--secondary-brand);
+            white-space: nowrap;
         }
 
         .login-logo span {

@@ -17,7 +17,7 @@ $user_role_label = ($user_role === 'admin') ? 'Administrator' : 'Billing Operato
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>i-Panel Baddegama Portal</title>
     <!-- Custom Style Sheet -->
-    <link rel="stylesheet" href="style.css?v=2.0">
+    <link rel="stylesheet" href="style.css?v=2.1">
 </head>
 <body>
 
@@ -42,8 +42,16 @@ $user_role_label = ($user_role === 'admin') ? 'Administrator' : 'Billing Operato
         <aside class="app-sidebar no-print" id="appSidebar">
             <div class="sidebar-top">
                 <div class="sidebar-brand">
-                    <div class="brand-logo">i-Panel<span>Baddegama</span></div>
-                    <div class="brand-badge"><?= ($user_role === 'admin') ? 'Admin Portal' : 'Billing Portal' ?></div>
+                    <div>
+                        <div class="brand-logo">i-Panel<span>Baddegama</span></div>
+                        <div class="brand-badge"><?= ($user_role === 'admin') ? 'Admin Portal' : 'Billing Portal' ?></div>
+                    </div>
+                    <button type="button" class="sidebar-close-btn no-print" onclick="toggleSidebar()" aria-label="Close Navigation Menu">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </button>
                 </div>
                 
                 <nav class="sidebar-nav">
