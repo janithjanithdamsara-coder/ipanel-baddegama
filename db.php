@@ -8,6 +8,13 @@ if (basename($_SERVER['SCRIPT_FILENAME'] ?? '') === 'db.php') {
     exit('Direct access forbidden.');
 }
 
+// Set Sri Lanka Timezone for all dates, receipts, and audit logs
+date_default_timezone_set('Asia/Colombo');
+
+// Suppress raw error output on screen, log internally
+ini_set('display_errors', '0');
+ini_set('log_errors', '1');
+
 $db_file = __DIR__ . '/db.sqlite';
 $db = null;
 
